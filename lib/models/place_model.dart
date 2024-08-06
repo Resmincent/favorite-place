@@ -10,4 +10,14 @@ class Place {
   final String id;
   final String title;
   final File image;
+  // final PlaceLocation location;
+}
+
+class PlaceLocation {
+  const PlaceLocation(
+      {required this.latitude, required this.address, required this.longitude});
+
+  final double latitude;
+  final double longitude;
+  final String address;
 }
