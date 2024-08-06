@@ -5,7 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:maps_ifran/models/place_model.dart';
 
 class LocationInput extends StatefulWidget {
-  const LocationInput({super.key});
+  const LocationInput({super.key, required this.onSelectLocation});
+
+  final void Function(PlaceLocation location) onSelectLocation;
 
   @override
   State<LocationInput> createState() => _LocationInputState();
@@ -71,6 +73,8 @@ class _LocationInputState extends State<LocationInput> {
             PlaceLocation(latitude: lat, address: address, longitude: lng);
         _isGettingLocation = false;
       });
+
+      widget.onSelectLocation(_pickedLocation!);
     } catch (error) {
       setState(() {
         _isGettingLocation = false;
