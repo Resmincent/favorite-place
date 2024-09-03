@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maps_ifran/models/place_model.dart';
+import 'package:maps_ifran/screens/map.dart';
 
 class PlaceDetailScreen extends StatelessWidget {
   const PlaceDetailScreen({super.key, required this.place});
@@ -28,6 +29,8 @@ class PlaceDetailScreen extends StatelessWidget {
           Image.file(
             place.image,
             fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
           ),
           Positioned(
             bottom: 0,
@@ -35,9 +38,21 @@ class PlaceDetailScreen extends StatelessWidget {
             right: 0,
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 70,
-                  backgroundImage: NetworkImage(locationImage),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => MapScreen(
+                          locationn: place.location,
+                          isSelecting: false,
+                        ),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 70,
+                    backgroundImage: NetworkImage(locationImage),
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
